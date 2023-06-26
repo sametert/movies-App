@@ -5,7 +5,7 @@ body {
 }
 
 .navbar-brand {
-    font-size: 32px !important;
+    font-size: 36px !important;
 }
 
 form input {
@@ -18,7 +18,44 @@ form input {
     width: 300px;
 }
 
-.card {
+.kart {
     background-color: #202020 !important;
     border: none !important;
 }
+
+.movies {
+    width: 200px !important;
+    height: 300px !important;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.movies:hover {
+    width: 250px !important;
+    height: 350px !important;
+}
+/* click movies */
+.movies_info {
+    font-size: 14px !important;
+    color: #757373;
+    font-weight: 500; 
+}
+
+.genre, .spoken_languages , .production_companies {
+    font-size: 16px;
+    color: #757373;
+    font-weight: 500;
+}
+
+.overview, .lang, .company {
+    font-size: 16px;
+    color: rgb(184, 185, 185);
+    font-weight: 500;
+}
+
+.tagline {
+    font-style: italic;
+    font-size: 16px;
+    color :rgb(184, 185, 185);
+}
+
