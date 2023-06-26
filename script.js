@@ -7,6 +7,9 @@ const language    = '?language=en-US';
 //click movies(details movies)
 const baseDetailsMovie = "https://api.themoviedb.org/3/movie/";
 
+//search movies
+const baseSearchMovies = "https://api.themoviedb.org/3/search/movie";
+
 
 
 allMovies();
@@ -33,7 +36,6 @@ async function allMovies() {
    
 
     const movieImg = document.querySelectorAll(".movies");
-    console.log(movieImg);
     movieImg.forEach(function(element){
         element.addEventListener("click", async()=>{
             const id = element.id;
@@ -187,5 +189,57 @@ function upComingMovies(results){
         upcoming.insertAdjacentHTML("beforeend",card);
     }  
 }
+
+
+const seacrhForm  = document.querySelector(".searchMovies");
+const searchInput = document.querySelector(".search");
+seacrhForm.addEventListener("submit", async(e)=> {
+    e.preventDefault();
+    currentMovies.style.display = "none";
+    const inputValue = "query="+searchInput.value;
+
+
+    const request = baseSearchMovies+"?api_key="+myApi+"&"+inputValue+"&"+language;
+    const req     = await fetch(request);
+    const data    = await req.json();
+    searchMovies(data.results);
+});
+
+
+const row = document.querySelector(".searchFilms");
+const search = document.querySelector(".srcMovies")
+function searchMovies(results) {
+    search.setAttribute("style","display:block;");
+    clearDisplay();
+    for(let result of results) {
+        if( !(result.poster_path == null || result.vote_average == 0)) {
+            const tag = `
+            <div class="col-md-2">
+                <div class="card kart">
+                    <img src="https://image.tmdb.org/t/p/w500${result.poster_path}"  id="${result.id}" alt="" class="card-img-top rounded-3 movies">
+                    <div class="card-body p-1">
+                        <p class="text-center text-white" style="height:40px;">${result.original_title}</p>
+                        <div class="d-flex justify-content-between">
+                            <div class="vote_average">
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <span class="text-white">${result.vote_average}</span>
+                            </div>
+                            <p class="year badge bg-secondary p-2">${result.release_date}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            `;
+            row.insertAdjacentHTML("beforeend",tag);
+        }
+    }
+}
+
+
+function clearDisplay() {
+    row.innerHTML = "";
+    searchInput.value = "";
+}
+
 
 
