@@ -1,8 +1,8 @@
-const myApi       = '3828cc5e00cec39e28da8767cddbf72c';
-const baseTopRated = "https://api.themoviedb.org/3/movie/top_rated";
+const myApi         = '3828cc5e00cec39e28da8767cddbf72c';
+const baseTopRated  = "https://api.themoviedb.org/3/movie/top_rated";
 const baseUpcoming  =  "https://api.themoviedb.org/3/movie/upcoming";
-const baseTrend   = 'https://api.themoviedb.org/3/trending/movie/week';
-const language    = '?language=en-US';
+const baseTrend     = 'https://api.themoviedb.org/3/trending/movie/week';
+const language      = '?language=en-US';
 
 //click movies(details movies)
 const baseDetailsMovie = "https://api.themoviedb.org/3/movie/";
@@ -43,6 +43,7 @@ async function allMovies() {
             const req = await fetch(request);
             const data = await req.json();
             clickMovies(data);
+            currentMovies.classList.add("add");
         });
    })
 }
@@ -51,7 +52,6 @@ async function allMovies() {
 const currentMovies = document.querySelector(".currentMovies");
 const clickMovie = document.querySelector(".clickMovies");
 function clickMovies(data) {
-    console.log(data);
     currentMovies.style.display = "none";
 
     let genres = "";
@@ -128,7 +128,7 @@ function trendingMovies(results) {
                             <i class="fa-solid fa-star text-warning"></i>
                             <span class="text-white">${results[i].vote_average.toFixed(1)}</span>
                         </div>
-                        <p class="year badge bg-secondary p-2">${results[i].release_date}</p>
+                        <p class="year badge p-2">${results[i].release_date}</p>
                     </div>
                 </div>
             </div>
@@ -154,7 +154,7 @@ function topRatedMovies(results){
                             <i class="fa-solid fa-star text-warning"></i>
                             <span class="text-white">${results[i].vote_average.toFixed(1)}</span>
                         </div>
-                        <p class="year badge bg-secondary p-2">${results[i].release_date}</p>
+                        <p class="year badge  p-2">${results[i].release_date}</p>
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@ function upComingMovies(results){
                             <i class="fa-solid fa-star text-warning"></i>
                             <span class="text-white">${results[i].vote_average.toFixed(1)}</span>
                         </div>
-                        <p class="year badge bg-secondary p-2">${results[i].release_date}</p>
+                        <p class="year badge p-2">${results[i].release_date}</p>
                     </div>
                 </div>
             </div>
@@ -194,15 +194,50 @@ function upComingMovies(results){
 const seacrhForm  = document.querySelector(".searchMovies");
 const searchInput = document.querySelector(".search");
 seacrhForm.addEventListener("submit", async(e)=> {
-    e.preventDefault();
-    currentMovies.style.display = "none";
-    const inputValue = "query="+searchInput.value;
+    if((search.classList.contains("add")) || currentMovies.classList.contains("add")) {
+        console.log("third");
+        clickMovie.innerHTML = "";
+        e.preventDefault();
+        currentMovies.style.display = "none";
+        const inputValue = "query="+searchInput.value;
+    
+    
+        const request = baseSearchMovies+"?api_key="+myApi+"&"+inputValue+"&"+language;
+        const req     = await fetch(request);
+        const data    = await req.json();
+        searchMovies(data.results);
+        search.classList.remove("add");
+        currentMovies.classList.remove("add");
+    }else if((search.classList.contains("srcMovies"))){
+        console.log("second")
+        e.preventDefault();
+        currentMovies.style.display = "none";
+        const inputValue = "query="+searchInput.value;
+    
+    
+        const request = baseSearchMovies+"?api_key="+myApi+"&"+inputValue+"&"+language;
+        const req     = await fetch(request);
+        const data    = await req.json();
+        searchMovies(data.results);
+    }
 
+   
 
-    const request = baseSearchMovies+"?api_key="+myApi+"&"+inputValue+"&"+language;
-    const req     = await fetch(request);
-    const data    = await req.json();
-    searchMovies(data.results);
+    //click movie
+    const movieImg = document.querySelectorAll(".movies");
+    movieImg.forEach(function(element){
+        element.addEventListener("click", async()=>{
+            const id = element.id;
+            const request = baseDetailsMovie+id+"?api_key="+myApi+"&"+language;
+            const req = await fetch(request);
+            const data = await req.json();
+            clickMovies(data);
+            // 1 tane search den gelen verileri clickledin
+            search.classList.add("add");
+            clickMovie.style.display = "";
+            scrollToTop();
+        });
+   })
 });
 
 
@@ -222,9 +257,9 @@ function searchMovies(results) {
                         <div class="d-flex justify-content-between">
                             <div class="vote_average">
                                 <i class="fa-solid fa-star text-warning"></i>
-                                <span class="text-white">${result.vote_average}</span>
+                                <span class="text-white">${result.vote_average.toFixed(1)}</span>
                             </div>
-                            <p class="year badge bg-secondary p-2">${result.release_date}</p>
+                            <p class="year badge p-2">${result.release_date}</p>
                         </div>
                     </div>
                 </div>
@@ -239,6 +274,13 @@ function searchMovies(results) {
 function clearDisplay() {
     row.innerHTML = "";
     searchInput.value = "";
+}
+
+function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Animasyonlu bir şekilde kaydırma yapmak için 'smooth' değerini kullanabilirsiniz
+    });
 }
 
 

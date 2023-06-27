@@ -34,6 +34,11 @@ form input {
     width: 250px !important;
     height: 350px !important;
 }
+
+.year {
+    background-color: #383838;
+}
+
 /* click movies */
 .movies_info {
     font-size: 14px !important;
