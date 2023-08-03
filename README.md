@@ -16,6 +16,14 @@ This project is a movie website built using The Movie Database (TMDB) API. The s
   
 * The design is user-friendly and responsive, ensuring smooth performance across different devices.
 
+
+## Technologies Used:
+* HTML, CSS, and JavaScript are primarily used to create the user interface.
+
+* The Fetch API is utilized to exchange data with the TMDB API.
+
+* Bootstrap or another CSS library can be used for responsive design.
+
 # Demo
 
 [You can find the live version](https://sametert.github.io/movies-App/)
