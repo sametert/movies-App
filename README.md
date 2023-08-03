@@ -11,3 +11,11 @@ Bu uygulama da javascript fetch API kullanarak movies-App yapmaya çalıştım. 
 
 ![](img/movie1.png)
 
+
+### Top Rated and Upcoming Movies
+![](img/movie2.png)
+
+
+### Search for Movies
+![](img/movie3.png)
+
