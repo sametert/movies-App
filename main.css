@@ -23,16 +23,13 @@ form input {
     border: none !important;
 }
 
-.movies {
-    width: 200px !important;
-    height: 300px !important;
-    transition: all 0.5s;
+ .movies {
     cursor: pointer;
-}
+    transition: all opacity .8s;
+} 
 
 .movies:hover {
-    width: 250px !important;
-    height: 350px !important;
+    opacity: .7;
 }
 
 .year {
@@ -63,4 +60,123 @@ form input {
     font-size: 16px;
     color :rgb(184, 185, 185);
 }
+
+.movie-name {
+    height: 40px;
+    color: rgb(184, 185, 185);
+}
+
+.details-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* film türü isimlerini temsilen */
+.movies-genre {
+    font-weight: 700;
+    font-size: 30px;
+    color: rgb(184, 185, 185);
+}
+
+/* responsive */
+@media (max-width: 1400px) {
+    .movie-name {
+        font-size: 14px;
+        height: 30px;
+    }
+
+    .movies {
+        width: 180px !important;
+        height: 280px !important;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+
+    .vote_average {
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    .movie-name {
+        font-size: 15px;
+    }
+
+    .movies {
+        width: 215px !important;
+        height: 315px !important;
+        transition: all 0.5s;
+        cursor: pointer;
+    } 
+
+    .vote_average {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-name {
+        font-size: 16px;
+    }
+
+    .movies {
+        width: 245px !important;
+        height: 345px !important;
+        transition: all 0.5s;
+        cursor: pointer;
+    } 
+
+    .vote_average {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .movies-genre {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .kart {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .movies {
+        width: 300px !important;
+        height: 400px !important;
+        transition: all 0.5s;
+        cursor: pointer;
+    } 
+
+    .movie-name {
+        font-size: 14px !important;
+    }
+
+    .film-details-all {
+        gap: 10px;
+    }
+
+    .netflix {
+        width: 100px;
+        height: 100px;
+    }
+
+    .navbar-brand {
+        font-size: 50px !important;
+    }
+
+    .brand {
+        margin-bottom: 10px;
+    }
+
+    .container-fluid {
+        justify-content: center !important;
+    }
+}
+
+
 

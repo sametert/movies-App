@@ -118,12 +118,14 @@ const trend = document.querySelector(".trend");
 function trendingMovies(results) {
     for(let i = 0 ; i < 6; i++) {
         const card = `
-        <div class="col-md-2">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 trendingFilm ">
             <div class="card kart">
                 <img src="https://image.tmdb.org/t/p/w500${results[i].poster_path}"  id="${results[i].id}" alt="" class="card-img-top rounded-3 movies">
-                <div class="card-body p-1">
-                    <p class="text-center text-white" style="height:40px;">${results[i].original_title}</p>
-                    <div class="d-flex justify-content-between">
+                <div class="card-body p-1 details-body">
+                    <div class="movie-name-kapsayici">
+                        <p class="text-center movie-name">${results[i].original_title}</p>
+                    </div>
+                    <div class="d-flex justify-content-between film-details-all">
                         <div class="vote_average">
                             <i class="fa-solid fa-star text-warning"></i>
                             <span class="text-white">${results[i].vote_average.toFixed(1)}</span>
@@ -144,12 +146,14 @@ const topRated = document.querySelector(".top_rated");
 function topRatedMovies(results){
     for(let i = 0 ; i < 6; i++) {
         const card = `
-        <div class="col-md-2">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
             <div class="card kart">
                 <img src="https://image.tmdb.org/t/p/w500${results[i].poster_path}" id="${results[i].id}" alt="" class="card-img-top rounded-3 movies">
-                <div class="card-body p-1">
-                    <p class="text-center text-white" style="height:40px;">${results[i].original_title}</p>
-                    <div class="d-flex justify-content-between">
+                <div class="card-body p-1 details-body">
+                    <div class="movie-name-kapsayici">
+                        <p class="text-center movie-name">${results[i].original_title}</p>
+                    </div>
+                    <div class="d-flex justify-content-between film-details-all">
                         <div class="vote_average">
                             <i class="fa-solid fa-star text-warning"></i>
                             <span class="text-white">${results[i].vote_average.toFixed(1)}</span>
@@ -170,12 +174,14 @@ const upcoming = document.querySelector(".upcoming");
 function upComingMovies(results){
     for(let i = 0 ; i < 6; i++) {
         const card = `
-        <div class="col-md-2">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
             <div class="card kart">
                 <img src="https://image.tmdb.org/t/p/w500${results[i].poster_path}" id="${results[i].id}" alt="" class="card-img-top rounded-3 movies">
-                <div class="card-body p-1">
-                    <p class="text-center text-white" style="height:40px;">${results[i].original_title}</p>
-                    <div class="d-flex justify-content-between">
+                <div class="card-body p-1 details-body">
+                    <div class="movie-name-kapsayici">
+                        <p class="text-center movie-name">${results[i].original_title}</p>
+                    </div>
+                    <div class="d-flex justify-content-between film-details-all">
                         <div class="vote_average">
                             <i class="fa-solid fa-star text-warning"></i>
                             <span class="text-white">${results[i].vote_average.toFixed(1)}</span>
