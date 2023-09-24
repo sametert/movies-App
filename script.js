@@ -68,10 +68,11 @@ function clickMovies(data) {
     for(let cmp of data.production_companies) {
         company += cmp.name+",";
     }
+
     const movie = `
         <div class="col-md-4">
             <div class="card">
-                <img src="https://image.tmdb.org/t/p/w500${data.poster_path}" class="card-img-top" alt="">
+                <img src="https://image.tmdb.org/t/p/w500${data.poster_path}" style="cursor:pointer;" class="card-img-top">
             </div>
         </div>
         <div class="col-md-8 text-white">
@@ -89,20 +90,20 @@ function clickMovies(data) {
                 <p class="genre">${genres}</p>
                 <p class="overview">${data.overview}</p>
 
-                <div class="row mt-5 align-items-center">
-                    <div class="col-md-2">
+                <div class="row click-details align-items-center">
+                    <div class="col-md-2 ">
                         <p class="spoken_languages">Spoken Languages:</p>
                     </div> 
-                    <div class="col-md-10">
+                    <div class="col-md-10 langu">
                         <p class="lang">${languages}</p>
                     </div> 
                 </div>
 
-                <div class="row  align-items-center">
+                <div class="row align-items-center">
                     <div class="col-md-2">
                         <p class="production_companies">Production Companies:</p>
                     </div> 
-                    <div class="col-md-10">
+                    <div class="col-md-10 langu">
                         <p class="company">${company}</p>
                     </div> 
                 </div>
@@ -201,25 +202,21 @@ const seacrhForm  = document.querySelector(".searchMovies");
 const searchInput = document.querySelector(".search");
 seacrhForm.addEventListener("submit", async(e)=> {
     if((search.classList.contains("add")) || currentMovies.classList.contains("add")) {
-        console.log("third");
         clickMovie.innerHTML = "";
         e.preventDefault();
         currentMovies.style.display = "none";
         const inputValue = "query="+searchInput.value;
-    
-    
+     
         const request = baseSearchMovies+"?api_key="+myApi+"&"+inputValue+"&"+language;
         const req     = await fetch(request);
         const data    = await req.json();
         searchMovies(data.results);
         search.classList.remove("add");
         currentMovies.classList.remove("add");
-    }else if((search.classList.contains("srcMovies"))){
-        console.log("second")
+    } else if((search.classList.contains("srcMovies"))){
         e.preventDefault();
         currentMovies.style.display = "none";
         const inputValue = "query="+searchInput.value;
-    
     
         const request = baseSearchMovies+"?api_key="+myApi+"&"+inputValue+"&"+language;
         const req     = await fetch(request);
@@ -255,12 +252,14 @@ function searchMovies(results) {
     for(let result of results) {
         if( !(result.poster_path == null || result.vote_average == 0)) {
             const tag = `
-            <div class="col-md-2">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                 <div class="card kart">
                     <img src="https://image.tmdb.org/t/p/w500${result.poster_path}"  id="${result.id}" alt="" class="card-img-top rounded-3 movies">
-                    <div class="card-body p-1">
-                        <p class="text-center text-white" style="height:40px;">${result.original_title}</p>
-                        <div class="d-flex justify-content-between">
+                    <div class="card-body p-1 details-body">
+                        <div class="movie-name-kapsayici">
+                            <p class="text-center movie-name search-movie-name">${result.original_title}</p>
+                        </div>
+                        <div class="d-flex justify-content-between film-details-all">
                             <div class="vote_average">
                                 <i class="fa-solid fa-star text-warning"></i>
                                 <span class="text-white">${result.vote_average.toFixed(1)}</span>

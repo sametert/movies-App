@@ -24,12 +24,14 @@ form input {
 }
 
  .movies {
+    width: 196px !important;
+    height: 295px !important;
     cursor: pointer;
-    transition: all opacity .8s;
+    transition: opacity 1s;
 } 
 
 .movies:hover {
-    opacity: .7;
+    opacity: .4;
 }
 
 .year {
@@ -72,6 +74,10 @@ form input {
     gap: 5px;
 }
 
+.click-details {
+    margin-top: 32px !important;
+}
+
 /* film türü isimlerini temsilen */
 .movies-genre {
     font-weight: 700;
@@ -84,6 +90,10 @@ form input {
     .movie-name {
         font-size: 14px;
         height: 30px;
+    }
+
+    .search-movie-name {
+        font-size: 13px !important;
     }
 
     .movies {
@@ -114,6 +124,39 @@ form input {
     .vote_average {
         font-size: 15px;
     }
+}
+
+@media (max-width: 992px) {
+    .movies-title {
+        font-size: 25px;
+    }
+
+    .tagline, .genre, .overview {
+        font-size: 14px;
+    }
+
+    .movies_info {
+        gap: 10px;
+    }
+
+    .vote_average {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 5px;
+    }
+
+    .langu {
+        padding-left: 30px !important;
+    }
+
+    .click-details {
+        margin-top: 8px !important;
+    }
+
+    .lang , .production_companies , .company , .spoken_languages {
+        font-size: 14px;
+    }
+   
 }
 
 @media (max-width: 768px) {
