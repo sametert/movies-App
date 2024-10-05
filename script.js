@@ -116,6 +116,7 @@ function clickMovies(data) {
 
 
 const trend = document.querySelector(".trend");
+console.log(trend)
 function trendingMovies(results) {
     for(let i = 0 ; i < 6; i++) {
         const card = `
